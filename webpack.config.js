@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-// const HTMLWebpackPlugin = require('html-webpack-plugin');
+const HTMLWebpackPlugin = require('html-webpack-plugin');
 //create css file per js file: https://webpack.kr/plugins/mini-css-extract-plugin/
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
@@ -8,9 +8,15 @@ const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin'
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
 const plugins = [
-  // new HTMLWebpackPlugin({
-  //   template: 'index.html',
-  // }),
+  new HTMLWebpackPlugin({
+    templateContent: `
+    <html>
+      <body>
+        <div id='root'></div>
+      </body>
+    </html>
+  `,
+  }),
 ];
 isDevelopment
   ? plugins.push(new ReactRefreshWebpackPlugin())
@@ -24,13 +30,19 @@ module.exports = {
   },
   entry: './src/index.tsx',
   output: {
-    filename: 'index.js',
-    path: path.resolve(__dirname, 'build'),
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'index_bundle.js',
     // more configurations: https://webpack.js.org/configuration/
   },
   plugins,
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.jsx'],
+    modules: [path.resolve(__dirname, './src'), 'node_modules'],
+    // automatically resolve certain extensions (Ex. import './file' will automatically look for file.js)
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.scss', '.css'],
+    alias: {
+      // alias for importing files
+      '@pages': path.resolve(__dirname, './src/pages'),
+    },
   },
   module: {
     rules: [
@@ -59,20 +71,8 @@ module.exports = {
           'style-loader',
           // Translates CSS into CommonJS
           'css-loader',
-          {
-            // for Tailwind CSS
-            loader: 'postcss-loader',
-            options: {
-              plugins: [
-                [
-                  'postcss-preset-env',
-                  {
-                    // more options: https://github.com/csstools/postcss-plugins/tree/main/plugin-packs/postcss-preset-env
-                  },
-                ],
-              ],
-            },
-          },
+          // for Tailwind CSS
+          'postcss-loader',
           // Compiles Sass to CSS
           'sass-loader',
         ],
