@@ -9,7 +9,7 @@ const App: React.FC = () => {
       <div className={styles.subtitle}>CSS module + Tailwind works!</div>
       <div
         className={
-          'border-[10px] border-solid border-red-800 rounded-full w-[200px] h-[200px] flex items-center justify-center'
+          'border-[10px] border-solid border-red-800 rounded-full w-[200px] h-[200px] flex items-center justify-center text-center'
         }
       >
         Tailwind works!

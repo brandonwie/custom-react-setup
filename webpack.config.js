@@ -9,13 +9,7 @@ const isDevelopment = process.env.NODE_ENV !== 'production';
 
 const plugins = [
   new HTMLWebpackPlugin({
-    templateContent: `
-    <html>
-      <body>
-        <div id='root'></div>
-      </body>
-    </html>
-  `,
+    template: './public/index.html',
   }),
 ];
 isDevelopment
@@ -26,12 +20,12 @@ module.exports = {
   mode: isDevelopment ? 'development' : 'production',
   devServer: {
     hot: true,
-    port: 4000,
+    port: 3000,
   },
   entry: './src/index.tsx',
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'index_bundle.js',
+    path: path.resolve(__dirname, 'build'),
+    filename: 'index.js',
     // more configurations: https://webpack.js.org/configuration/
   },
   plugins,

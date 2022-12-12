@@ -7,7 +7,7 @@
     [
       "@babel/preset-react",
       {
-        "runtime": "automatic" // use jsx runtime
+        "runtime": "automatic" // the default option, "classic" does not automatic import anything.
         // https://stackoverflow.com/questions/32070303/uncaught-referenceerror-react-is-not-defined
       }
     ],
