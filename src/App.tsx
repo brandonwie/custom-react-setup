@@ -3,6 +3,7 @@ import SamplePage from '@pages/Sample';
 import './main.css';
 
 const App: React.FC = () => {
+  console.log(process.env.NODE_ENV);
   return (
     <div>
       <div className={styles.title}>CSS module works!</div>

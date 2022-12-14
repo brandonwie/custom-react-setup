@@ -1,13 +1,13 @@
-const path = require('path');
-const webpack = require('webpack');
-const HTMLWebpackPlugin = require('html-webpack-plugin');
+import path from 'path';
+import webpack from 'webpack';
+import HTMLWebpackPlugin from 'html-webpack-plugin';
 //create css file per js file: https://webpack.kr/plugins/mini-css-extract-plugin/
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
-const plugins = [
+const plugins: webpack.WebpackPluginInstance[] = [
   new HTMLWebpackPlugin({
     template: './public/index.html',
   }),
@@ -16,7 +16,7 @@ isDevelopment
   ? plugins.push(new ReactRefreshWebpackPlugin())
   : plugins.push(new MiniCssExtractPlugin());
 
-module.exports = {
+const config: webpack.Configuration = {
   mode: isDevelopment ? 'development' : 'production',
   devServer: {
     hot: true,
@@ -34,7 +34,7 @@ module.exports = {
     // automatically resolve certain extensions (Ex. import './file' will automatically look for file.js)
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.scss', '.css'],
     alias: {
-      // alias for importing files
+      // absolute path importing files
       '@pages': path.resolve(__dirname, './src/pages'),
     },
   },
@@ -74,3 +74,5 @@ module.exports = {
     ],
   },
 };
+
+export default config;

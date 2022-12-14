@@ -1,5 +1,5 @@
 {
-  // there's a room for discussions, but I won't exclude node_modules here
+  // there's room for discussions, but I won't exclude node_modules here
   // https://stackoverflow.com/questions/54156617/why-would-we-exclude-node-modules-when-using-babel-loader
   // "exclude": "node_modules/**",
   "presets": [
