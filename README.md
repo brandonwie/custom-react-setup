@@ -1,5 +1,21 @@
 # The Complete Guide For Setting Up React.TS Application
 
+## Installation
+
+```bash
+yarn install
+```
+
+## Run
+
+```bash
+yarn start
+```
+
+---
+
+## How this app is built
+
 > with webpack, Babel, TypeScript, Sass, CSS Module, Tailwind, React Refresh(HMR)
 
 In this tutorial, we're going to set up a React application without using create-react-app.
